@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Google Maps JavaScript API v3 Example: Marker Animations</title>
+    <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      var newyork = new google.maps.LatLng(40.7142,-74.0064);
+      var manhattan = new google.maps.LatLng(40.7697,-73.9735);
+      var marker;
+      var map;
+      
+      function markIt(map, pointLL) {
+		  marker = new google.maps.Marker({
+          map:map,
+          draggable:true,
+          animation: google.maps.Animation.DROP,
+          position: pointLL
+        });
+	  }
+	  
+	  function putMarkers(map){
+		  pointLL = new google.maps.LatLng(40.6789,-73.4175);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.65,-73.95);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.6975,-74.2636);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.6639,-74.2111);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.574416,-73.978575);
+		  markIt(map, pointLL);		  
+		  pointLL = new google.maps.LatLng(40.7697,-73.9735);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.7439,-74.0328);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.7143,-73.8204);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.40372,-73.991527);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.660,-73.145);
+		  markIt(map, pointLL);		
+		  pointLL = new google.maps.LatLng(39.9522,-75.1642);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(43.6106,-73.1803);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(44.0817218,-73.3942908);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(44.1667,-76.3667);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(12.1204495496,-1.78414774775);
+		  markIt(map, pointLL);		  
+		  pointLL = new google.maps.LatLng(41.7,-71.5);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(44.9181,-73.1247);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(30.7143,-73.8204);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(36.40372,-73.991527);
+		  markIt(map, pointLL);
+		  pointLL = new google.maps.LatLng(40.660,-73.145);
+		  markIt(map, pointLL);	  
+	}
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 4,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: newyork
+        };
+
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+                mapOptions);
+
+        marker = new google.maps.Marker({
+          map:map,
+          draggable:true,
+          animation: google.maps.Animation.DROP,
+          position: manhattan
+        });
+        putMarkers(map);
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+      }
+
+      function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width: 500px; height: 400px;">map div</div>
+    <form action="data.php" method="get">
+	Precision Level (Higher value, higher precision) <input type="text" name="howfar">
+		<input type="submit" value="Fetch">
+		<br>
+		<a href="data_j.php?howfar=2" target="_blank">Json Data</a>
+    </form>
+  </body>
+</html>
